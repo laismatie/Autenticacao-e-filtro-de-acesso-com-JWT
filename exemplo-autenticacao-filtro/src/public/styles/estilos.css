@@ -18,13 +18,14 @@ body {
     display: inline;
     vertical-align: middle; }
   #banner img {
-    width: 40px;
+    width: 34px;
     background-color: #eb974e;
     padding: 10px;
     border-radius: 50%;
     margin-right: 10px; }
   #banner h1 {
-    font-family: "negrito"; }
+    font-family: "negrito";
+    margin-right: 10px; }
 
 #conteudo {
   padding: 10px; }
