@@ -43,15 +43,25 @@ export default class LoginController {
         }
     }
 
-    verificarUsuario(req, res, next){
-        const usuario = req.session.usuario;
-        
-        if(usuario){
-            next();
-        }else{
-            res.redirect('/');
-        }
+    verificarAdmin(res,req){
 
+    }
+
+    verificarUsuarioLogado(res, req, login){
+        const login = document.getElementById('logout');
+        const menu = document.getElementById('menu');
+
+        const usuarioLogado = false;
+
+        if(req.session.usuario){
+            usuarioLogado = true;
+            login.style.display == "block";
+            menu.style.display == "block";
+        }else{
+            usuarioLogado = false;
+            login.style.display == "none";
+            menu.style.display == "none";
+        }
     }
 
     /**
@@ -86,10 +96,6 @@ export default class LoginController {
                 mensagem: 'Não autorizado'
             };
         }
-    }
-
-    realizarLogout(){
-        res.redirect('/login')
     }
 
     /**

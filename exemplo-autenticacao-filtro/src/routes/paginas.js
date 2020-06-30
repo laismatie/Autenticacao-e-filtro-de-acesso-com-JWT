@@ -10,7 +10,7 @@ const loginCtrl = new LoginController();
 /**
  * Rota da página de Cadastro de usuário
  */
-router.get('/cadastro', loginCtrl.verificarUsuario, (req, res) => res.render('cadastro'));
+router.get('/cadastro', loginCtrl.verificarAdmin, (req, res) => res.render('cadastro'));
 
 /**
  * Rota para cadastro de novo usuário
@@ -64,6 +64,6 @@ router.get('/logout', (req, res) => {
  * token do usuário não expirou, ou seja, se ainda não se passou 1 hora
  * desde que ele realizou o seu login.
  */
-router.get('/home', loginCtrl.verificarToken, (req, res) => res.render('home', { usuario: req.session.usuario }));
+router.get('/home', loginCtrl.verificarToken, loginCtrl.verificarUsuarioLogado, (req, res) => res.render('home', { usuario: req.session.usuario }));
 
 export default router;
