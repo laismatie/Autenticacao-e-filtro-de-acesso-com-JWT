@@ -10,15 +10,16 @@ html
             img(src="img/logo.png", alt="Segurança")
             h1 Auth TSI
             
-
-       
-            #menu
-                a(href="/cadastro") Cadastrar novo usuário      
             
-            #logout
-                a(href="/logout") 
-                    img(src="img/logout.png", alt="Logout")
-                    
+            if usuario
+                if usuario.login === "admin@email.com"
+                    #menu
+                        a(href="/cadastro") Cadastrar novo usuário 
+
+                #logout
+                    a(href="/logout") 
+                        img(src="img/logout.png", alt="Logout")
+                        
 
         #conteudo
             block conteudo

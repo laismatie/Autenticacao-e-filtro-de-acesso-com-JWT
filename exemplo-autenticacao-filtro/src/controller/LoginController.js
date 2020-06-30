@@ -43,9 +43,9 @@ export default class LoginController {
         }
     }
 
-    verificarAdmin(res,req,next){
+    verificarUsuario(req,res,next){
         const usuario = req.session.usuario;
-        if(usuario.login == "admin@email.com"){
+        if(usuario && usuario.login === "admin@email.com"){
             next();
         }else{
             res.redirect('/home');
@@ -103,7 +103,7 @@ export default class LoginController {
      */
     verificarToken(req, res, next) {
         const token = req.session.token;
-        console.log(token);
+        //console.log(token);
 
         /**
          * Se o token já expirou, não permite o acesso à página

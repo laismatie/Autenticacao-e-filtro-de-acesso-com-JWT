@@ -8,20 +8,6 @@ const router = Router();
 const loginCtrl = new LoginController();
 
 /**
- * Rota da página de Cadastro de usuário
- */
-router.get('/cadastro', loginCtrl.verificarAdmin, (req, res) => res.render('cadastro'));
-
-/**
- * Rota para cadastro de novo usuário
- */
-router.post('/cadastro', (req, res) => {
-    const { login, nome, senha } = req.body;
-    const resposta = loginCtrl.registrarUsuario(login, nome, senha);
-    res.render('cadastro', { mensagem: resposta.mensagem });
-});
-
-/**
  * Rota da página de login
  */
 router.get('/', (req, res) => res.render('login'));
@@ -53,6 +39,23 @@ router.post('/', (req, res) => {
     }
 });
 
+/**
+ * Rota da página de Cadastro de usuário
+ */
+router.get('/cadastro', loginCtrl.verificarUsuario, (req, res) => res.render('cadastro', { usuario: req.session.usuario }));
+
+/**
+ * Rota para cadastro de novo usuário
+ */
+router.post('/cadastro', (req, res) => {
+    const { email, nome, senha } = req.body;
+    const resposta = loginCtrl.registrarUsuario(email, nome, senha);
+    res.render('cadastro', { 
+        mensagem: resposta.mensagem,
+        usuario: req.session.usuario
+    });
+});
+
 router.get('/logout', (req, res) => {
     req.session.token = null;
     req.session.usuario = null;
@@ -65,6 +68,6 @@ router.get('/logout', (req, res) => {
  * token do usuário não expirou, ou seja, se ainda não se passou 1 hora
  * desde que ele realizou o seu login.
  */
-router.get('/home', loginCtrl.verificarToken, loginCtrl.verificarUsuarioLogado, (req, res) => res.render('home', { usuario: req.session.usuario }));
+router.get('/home', loginCtrl.verificarToken, (req, res) => res.render('home', { usuario: req.session.usuario }));
 
 export default router;
