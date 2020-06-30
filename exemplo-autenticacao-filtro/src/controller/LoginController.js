@@ -43,27 +43,15 @@ export default class LoginController {
         }
     }
 
-    verificarAdmin(res,req){
-
-    }
-
-    verificarUsuarioLogado(res, req, login){
-        const login = document.getElementById('logout');
-        const menu = document.getElementById('menu');
-
-        const usuarioLogado = false;
-
-        if(req.session.usuario){
-            usuarioLogado = true;
-            login.style.display == "block";
-            menu.style.display == "block";
+    verificarAdmin(res,req,next){
+        const usuario = req.session.usuario;
+        if(usuario.login == "admin@email.com"){
+            next();
         }else{
-            usuarioLogado = false;
-            login.style.display == "none";
-            menu.style.display == "none";
+            res.redirect('/home');
         }
     }
-
+    
     /**
      * Realiza o login (autenticação) de um usuário
      * @param {*} login Login (no caso, o e-mail) do usuário

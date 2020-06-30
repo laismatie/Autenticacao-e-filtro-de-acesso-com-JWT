@@ -55,6 +55,7 @@ router.post('/', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.session.token = null;
+    req.session.usuario = null;
     res.redirect('/');
 });
 
