@@ -8,7 +8,21 @@ body {
     background-color: #d35400;
     color: white;
     padding: 5px 10px;
+    width: 100%;
+    a{
+        text-decoration: none;
+        color: white;
+        font-size: 105%;
 
+        &:hover{
+            font-weight: bold;
+        }
+
+        img{
+            position:absolute;
+            right: 11px;      
+        }
+    }
     * {
         display: inline;
         vertical-align: middle;
@@ -24,8 +38,9 @@ body {
 
     h1 {
         font-family: $fonte-negrito;
-        margin-right: 10px;
+        margin-right: 40px;
     }
+
 }
 
 
@@ -62,6 +77,39 @@ body {
             background-color: #e67e22;
             padding: 5px 10px;
             font-size: 130%;
+        }
+    }
+}
+
+#areaCadastro{
+    margin: 50px auto;
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #dddddd;
+
+    input {
+        display: block;
+        margin: 0px auto 10px auto;
+        font-family: $fonte-padrao;
+
+        &[type=text],
+        &[type=password] {
+            height: 35px;
+            width: 350px;
+            border: 1px solid #cccccc;
+            font-size: 110%;
+            padding: 5px;
+            text-align: center;
+            color: #777777;
+        }
+
+        &[type=submit] {
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #e67e22;
+            padding: 5px 10px;
+            font-size: 120%;
         }
     }
 }

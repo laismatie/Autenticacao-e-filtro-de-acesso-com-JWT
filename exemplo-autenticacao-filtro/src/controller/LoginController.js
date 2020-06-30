@@ -43,6 +43,17 @@ export default class LoginController {
         }
     }
 
+    verificarUsuario(req, res, next){
+        const usuario = req.session.usuario;
+        
+        if(usuario){
+            next();
+        }else{
+            res.redirect('/');
+        }
+
+    }
+
     /**
      * Realiza o login (autenticação) de um usuário
      * @param {*} login Login (no caso, o e-mail) do usuário
@@ -63,6 +74,7 @@ export default class LoginController {
                 usuario,
                 token
             };
+            
         } else {
             /**
              * Se o usuário não existe ou a senha é inválida,
@@ -74,6 +86,10 @@ export default class LoginController {
                 mensagem: 'Não autorizado'
             };
         }
+    }
+
+    realizarLogout(){
+        res.redirect('/login')
     }
 
     /**

@@ -8,6 +8,20 @@ const router = Router();
 const loginCtrl = new LoginController();
 
 /**
+ * Rota da página de Cadastro de usuário
+ */
+router.get('/cadastro', loginCtrl.verificarUsuario, (req, res) => res.render('cadastro'));
+
+/**
+ * Rota para cadastro de novo usuário
+ */
+router.post('/cadastro', (req, res) => {
+    const { login, nome, senha } = req.body;
+    const resposta = loginCtrl.registrarUsuario(login, nome, senha);
+    res.render('cadastro', { mensagem: resposta.mensagem });
+});
+
+/**
  * Rota da página de login
  */
 router.get('/', (req, res) => res.render('login'));
@@ -37,6 +51,11 @@ router.post('/', (req, res) => {
     } else {
         res.render('login', { mensagem: resposta.mensagem });
     }
+});
+
+router.get('/logout', (req, res) => {
+    req.session.token = null;
+    res.redirect('/');
 });
 
 /**

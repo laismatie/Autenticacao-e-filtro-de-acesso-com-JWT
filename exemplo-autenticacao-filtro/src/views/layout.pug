@@ -9,13 +9,15 @@ html
         #banner
             img(src="img/logo.png", alt="Segurança")
             h1 Auth TSI
-            #menu
-             a
-                img(src="img/menu.png", alt="Menu")
-            #logout
-                a(href="/")
-                    img(src="img/logout.png", alt="Logout")
-                
+            
+            if usuario
+                #menu
+                    a(href="/cadastro") Cadastrar novo usuário      
+
+                #logout
+                    a(href="/logout") 
+                        img(src="img/logout.png", alt="Logout")
+                    
 
         #conteudo
             block conteudo
